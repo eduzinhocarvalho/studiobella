@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#120812">
+<title>Studio Bella</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ TOPBAR ============ -->
+<header class="topbar">
+  <div class="logo" onclick="go('home')">
+    <div class="logo-icon">✿</div>
+    <span class="nome" id="brandName">Studio Bella</span>
+  </div>
+  <nav>
+    <button onclick="go('home')">Início</button>
+    <button onclick="go('servicos')">Serviços</button>
+    <button onclick="go('produtos')">Produtos</button>
+    <button onclick="go('agendar')">Agendar</button>
+    <button class="admin-btn" onclick="go('admin')">🔒 Admin</button>
+  </nav>
+</header>
+
+<!-- ============ HOME ============ -->
+<section id="view-home" class="view active">
+  <div class="hero">
+    <p class="hero-tag">Bem-vinda ao</p>
+    <h1 id="heroNome">Studio Bella</h1>
+    <p class="hero-slogan" id="heroSlogan"></p>
+    <div class="hero-btns">
+      <button class="btn btn-gold" onclick="go('agendar')">📅 Agendar agora</button>
+      <button class="btn btn-ghost" onclick="go('servicos')">Ver serviços</button>
+      <button class="btn btn-ghost" onclick="go('produtos')">🛍️ Ver produtos</button>
+    </div>
+    <div class="hero-info" id="heroInfo"></div>
+  </div>
+</section>
+
+<!-- ============ SERVIÇOS ============ -->
+<section id="view-servicos" class="view">
+  <div class="wrap">
+    <h2 class="section-title">Nossos Serviços</h2>
+    <p class="section-sub">Escolha o serviço perfeito para você. Cada atendimento é feito com carinho e produtos profissionais.</p>
+    <div class="grid" id="servicosGrid"></div>
+  </div>
+</section>
+
+<!-- ============ PRODUTOS ============ -->
+<section id="view-produtos" class="view">
+  <div class="wrap">
+    <h2 class="section-title">Nossos Produtos</h2>
+    <p class="section-sub">Selecionamos o melhor para você levar o cuidado do salão pra casa. Escolha a quantidade e envie uma mensagem pra gente tirar suas dúvidas.</p>
+    <div class="produtos-grid" id="produtosGrid"></div>
+  </div>
+</section>
+
+<!-- ============ AGENDAR ============ -->
+<section id="view-agendar" class="view">
+  <div class="wrap">
+    <h2 class="section-title">Agendar</h2>
+    <p class="section-sub">Escolha o serviço, o dia e o horário. Depois é só deixar seu telefone.</p>
+
+    <div class="agendar-grid">
+      <div>
+        <div class="card">
+          <h3><span class="num">1</span> Serviço</h3>
+          <select id="selServico" onchange="onServicoChange()"></select>
+          <p class="muted small" id="servicoDetalhe" style="margin-top:10px"></p>
+        </div>
+
+        <div class="card">
+          <h3><span class="num">2</span> Dia</h3>
+          <div class="cal-nav">
+            <button onclick="mudarMes(-1)" aria-label="Mês anterior">‹</button>
+            <span id="calMes"></span>
+            <button onclick="mudarMes(1)" aria-label="Próximo mês">›</button>
+          </div>
+          <div class="cal-dow">
+            <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+          <p class="muted small" style="margin-top:14px">🔒 Dias riscados = salão fechado.</p>
+        </div>
+
+        <div class="card">
+          <h3><span class="num">3</span> Horário</h3>
+          <div class="chips" id="horariosChips"></div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card sticky">
+          <h3><span class="num">4</span> Seus dados</h3>
+          <div class="resumo" id="resumoBox"></div>
+          <div class="field">
+            <label>Seu nome</label>
+            <input type="text" id="inpNome" placeholder="Ex: Maria Silva">
+          </div>
+          <div class="field">
+            <label>WhatsApp / Telefone</label>
+            <input type="tel" id="inpTel" placeholder="(11) 99999-9999">
+          </div>
+          <button class="btn btn-gold" style="width:100%" onclick="enviarPedido()">
+            Solicitar agendamento
+          </button>
+          <p class="muted small" style="margin-top:12px;text-align:center;line-height:1.5">
+            O horário só é reservado após confirmação da profissional.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ADMIN ============ -->
+<section id="view-admin" class="view">
+  <div class="wrap">
+
+    <div id="adminLogin" class="card login-card">
+      <div class="logo-icon" style="margin:0 auto 18px;width:52px;height:52px;font-size:1.5rem">🔒</div>
+      <h2>Área do Salão</h2>
+      <p>Digite a senha para gerenciar o site.</p>
+      <input type="password" id="inpSenha" placeholder="Senha" style="text-align:center"
+             onkeydown="if(event.key==='Enter')login()">
+      <button class="btn btn-gold" style="width:100%;margin-top:14px" onclick="login()">Entrar</button>
+      <p class="muted small" style="margin-top:18px">Senha padrão: <b>1234</b></p>
+    </div>
+
+    <div id="adminPanel" style="display:none">
+      <div class="admin-head">
+        <h2>Painel do Salão</h2>
+        <button class="btn btn-ghost btn-sm" onclick="logout()">Sair</button>
+      </div>
+
+      <div class="tabs">
+        <button data-tab="pedidos" onclick="setTab('pedidos')">
+          Pedidos <span class="badge-n" id="badgePedidos" style="display:none">0</span>
+        </button>
+        <button data-tab="servicos" onclick="setTab('servicos')">Serviços</button>
+        <button data-tab="produtos" onclick="setTab('produtos')">Produtos</button>
+        <button data-tab="agenda" onclick="setTab('agenda')">Agenda</button>
+        <button data-tab="config" onclick="setTab('config')">Config</button>
+      </div>
+
+      <div id="tab-pedidos" class="tab"></div>
+      <div id="tab-servicos" class="tab"></div>
+      <div id="tab-produtos" class="tab"></div>
+      <div id="tab-agenda" class="tab"></div>
+      <div id="tab-config" class="tab"></div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span id="footerNome">Studio Bella</span> • <span id="footerEnd"></span>
+</footer>
+
+<div id="toast"></div>
+<div id="syncStatus" class="sync-status">☁️ Conectando...</div>
+
+<!-- ============ CARRINHO (barra fixa) ============ -->
+<div id="cartBar" class="cart-bar" onclick="abrirCarrinho()">
+  <div class="cart-bar-left">
+    <span class="cart-count" id="cartCount">0</span>
+    <span class="cart-label">itens no carrinho</span>
+  </div>
+  <div class="cart-bar-right">
+    <span class="cart-total" id="cartTotal">R$ 0,00</span>
+    <span class="cart-arrow">›</span>
+  </div>
+</div>
+
+<!-- ============ CARRINHO (modal) ============ -->
+<div id="cartModal" class="cart-modal">
+  <div class="cart-modal-bg" onclick="fecharCarrinho()"></div>
+  <div class="cart-modal-content">
+    <div class="cart-head">
+      <h3>🛒 Meu carrinho</h3>
+      <button onclick="fecharCarrinho()" class="cart-close" aria-label="Fechar">✕</button>
+    </div>
+
+    <div id="cartItems" class="cart-items"></div>
+
+    <div class="cart-foot">
+      <div class="field">
+        <label>Sua pergunta (opcional)</label>
+        <textarea id="cartPergunta" rows="2"
+          placeholder="Ex: Todos esses produtos estão disponíveis? Esse shampoo é bom pra cabelo com química?"></textarea>
+      </div>
+      <button class="btn btn-wa" style="width:100%" onclick="enviarCarrinho()">
+        📱 Enviar pelo WhatsApp
+      </button>
+      <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:8px" onclick="limparCarrinho()">
+        Limpar carrinho
+      </button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
