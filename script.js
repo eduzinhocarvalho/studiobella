@@ -3,12 +3,13 @@
    ⚠️ SUBSTITUA PELO SEU firebaseConfig DO PROJETO DO SALÃO
    ========================================================= */
 const firebaseConfig = {
-  apiKey: "AIzaSyCxOYx1rp0DReyTxiyonr-M5r27vioi2e4",
-  authDomain: "salaodebeleza-e9742.firebaseapp.com",
-  projectId: "salaodebeleza-e9742",
-  storageBucket: "salaodebeleza-e9742.firebasestorage.app",
-  messagingSenderId: "945575694519",
-  appId: "1:945575694519:web:f24a0e6df8f42fc9cc7d32"
+  apiKey: "AIzaSyDCob-WS-NJwj06ePgD_su2qb44UeyWhiI",
+  authDomain: "studio-bella-4b0ed.firebaseapp.com",
+  databaseURL: "https://studio-bella-4b0ed-default-rtdb.firebaseio.com/",
+  projectId: "studio-bella-4b0ed",
+  storageBucket: "studio-bella-4b0ed.firebasestorage.app",
+  messagingSenderId: "627815942257",
+  appId: "1:627815942257:web:af441c7e901f1ed366f3d0"
 };
 
 /* =========================================================
