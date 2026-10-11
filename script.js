@@ -3,13 +3,12 @@
    ⚠️ SUBSTITUA PELO SEU firebaseConfig DO PROJETO DO SALÃO
    ========================================================= */
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY_AQUI",
-  authDomain: "SEU_PROJETO.firebaseapp.com",
-  databaseURL: "https://SEU_PROJETO-default-rtdb.firebaseio.com",
-  projectId: "SEU_PROJETO",
-  storageBucket: "SEU_PROJETO.appspot.com",
-  messagingSenderId: "000000000000",
-  appId: "1:000000000000:web:xxxxxxxxxxxx"
+  apiKey: "AIzaSyCxOYx1rp0DReyTxiyonr-M5r27vioi2e4",
+  authDomain: "salaodebeleza-e9742.firebaseapp.com",
+  projectId: "salaodebeleza-e9742",
+  storageBucket: "salaodebeleza-e9742.firebasestorage.app",
+  messagingSenderId: "945575694519",
+  appId: "1:945575694519:web:f24a0e6df8f42fc9cc7d32"
 };
 
 /* =========================================================
