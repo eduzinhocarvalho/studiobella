@@ -1,14 +1,15 @@
 /* =========================================================
    🔥 CONFIGURAÇÃO DO FIREBASE
-   ⚠️ CRIE UM PROJETO NOVO (não use o mesmo da barbearia!)
+   ⚠️ SUBSTITUA PELO SEU firebaseConfig DO PROJETO DO SALÃO
    ========================================================= */
 const firebaseConfig = {
-  apiKey: "AIzaSyCxOYx1rp0DReyTxiyonr-M5r27vioi2e4",
-  authDomain: "salaodebeleza-e9742.firebaseapp.com",
-  projectId: "salaodebeleza-e9742",
-  storageBucket: "salaodebeleza-e9742.firebasestorage.app",
-  messagingSenderId: "945575694519",
-  appId: "1:945575694519:web:f24a0e6df8f42fc9cc7d32"
+  apiKey: "SUA_API_KEY_AQUI",
+  authDomain: "SEU_PROJETO.firebaseapp.com",
+  databaseURL: "https://SEU_PROJETO-default-rtdb.firebaseio.com",
+  projectId: "SEU_PROJETO",
+  storageBucket: "SEU_PROJETO.appspot.com",
+  messagingSenderId: "000000000000",
+  appId: "1:000000000000:web:xxxxxxxxxxxx"
 };
 
 /* =========================================================
@@ -19,7 +20,7 @@ import { getDatabase, ref, onValue, set }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 /* =========================================================
-   DADOS PADRÃO — STUDIO BELLA
+   DADOS PADRÃO
    ========================================================= */
 const STORAGE_KEY = 'studiobella_data_v1';
 const CART_KEY    = 'studiobella_cart_v1';
@@ -84,7 +85,7 @@ const DEFAULT_DATA = {
       imagem:'https://placehold.co/500x500/201020/e8a8be?text=Sérum' }
   ],
   agenda: {
-    diasSemana: [false, false, true, true, true, true, true], // Dom off, Seg off, Ter–Sáb on
+    diasSemana: [false, false, true, true, true, true, true],
     bloqueados: [],
     liberados: [],
     horarios: gerarHorarios('09:00','19:00',30)
@@ -137,7 +138,10 @@ function mergeDefaults(d){
    FIREBASE
    ========================================================= */
 function initFirebase(){
-  const cfgOk = firebaseConfig.databaseURL && !firebaseConfig.databaseURL.includes('SEU_PROJETO');
+  const cfgOk = firebaseConfig.databaseURL &&
+                !firebaseConfig.databaseURL.includes('SEU_PROJETO') &&
+                firebaseConfig.databaseURL.startsWith('https://');
+
   if(!cfgOk){
     console.warn('⚠️ Firebase não configurado. Usando localStorage.');
     const local = loadLocal();
